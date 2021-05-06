@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap");
+/*----- VARIABLES CSS -----*/
+/*Colores*/
+:root {
+  --first-color: #010a43;
+  --second-color: #ffc2c2;
+  --white-color: #fff;
+
+  --header-height: 3rem;
+
+  --body-font: "Tinos", serif;
+  --h1-font-size: 2.3rem;
+  --h2-font-size: 2.3rem;
+  --normal-font-size: 0.93rem;
+  --big-font-size: 5rem;
+  --smaller-font-size: 0.75rem;
+
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --h1-font-size: 4.5rem;
+    --h2-font-size: 3.56rem;
+    --normal-font-size: 1rem;
+    --big-font-size: 10rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+/*----- BASE -----*/
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 3rem 0 0 0;
+  font-family: var(--body-font);
+  font-weight: initial;
+  overflow: hidden;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: initial;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  font-size: var(--normal-font-size);
+}
+
+/*----- LAYOUT -----*/
+
+.bd_grid {
+  max-width: 1200px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.l_header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--first-color);
+  color: var(--white-color);
+  z-index: var(--z-fixed);
+}
+
+/* nav */
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .nav_menu {
+    position: fixed;
+    top: var(--header-height);
+    left: -100%;
+    background: rgba(1, 10, 67, 0.8);
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    padding: 2rem;
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+  }
+}
+
+.show_menu {
+  left: 0;
+}
+
+.nav_list {
+  text-align: center;
+}
+
+.nav_item {
+  margin-bottom: 2rem;
+}
+
+.nav_link {
+  padding: 0.5rem;
+  color: var(--white-color);
+}
+
+.nav_logo {
+  color: var(--white-color);
+}
+.nav_toggle {
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.nav_icon_cart {
+  font-size: 1.5rem;
+  text-align: right;
+}
+
+/* ======= HOME ======= */
+
+.home {
+  position: relative;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  height: calc(100vh - var(--header-height));
+}
+
+.home_primary {
+  width: 0;
+  background: var(--first-color);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.home_title {
+  font-size: var(--h1-font-size);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--white-color);
+}
+
+.home_img {
+  width: 235px;
+  height: auto;
+}
+
+.home_secondary {
+  width: 0;
+  background: var(--second-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.home_scroll {
+  position: absolute;
+  left: 0;
+  bottom: 15%;
+  font-size: var(--smaller-font-size);
+  transform: rotate(270deg);
+  color: var(--first-color);
+}
+
+.home_scroll:after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: -10%;
+  width: 38px;
+  height: 1px;
+  background: var(--first-color);
+  margin-left: -2.5rem;
+}
+
+.home_year {
+  font-size: var(--big-font-size);
+  -webkit-text-stroke: 2.3px var(--first-color);
+  /* 텍스트 테두리 두께  */
+  color: transparent;
+  /* 내부 색상 삭제 */
+}
+
+/* ======== MEDIA QUERY ======= */
+@media (min-width: 768px) {
+  body {
+    margin: 0;
+  }
+
+  .l_header {
+    background: transparent;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: 3fr 4fr 1fr;
+  }
+  .nav_list {
+    display: flex;
+  }
+
+  .nav_item {
+    margin-right: 5rem;
+    margin-bottom: 0;
+  }
+
+  .nav_toggle {
+    display: none;
+  }
+
+  .home {
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+  }
+
+  .home_primary {
+    justify-content: center;
+  }
+
+  .home_img img {
+    position: absolute;
+    width: 361px;
+    top: 5%;
+    left: 0; 
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: var(--z-normal);
+  }
+
+  .home_scroll {
+    color: var(--white-color);
+  }
+  .home_scroll::after {
+    background: var(--white-color);
+  }
+
+  .home_year {
+    writing-mode: vertical-rl;
+    margin-left: 5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .bd_grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
